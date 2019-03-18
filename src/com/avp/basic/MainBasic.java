@@ -1,5 +1,10 @@
 package com.avp.basic;
 
+import com.avp.basic.instanceofdemo.Car;
+import com.avp.basic.instanceofdemo.Toyota;
+import com.avp.basic.instanceofdemo.Van;
+import com.avp.basic.instanceofdemo.Vehicle;
+
 public class MainBasic {
     public static void main(String[] args) {
         Calculation cal = new Calculation();
@@ -22,5 +27,14 @@ public class MainBasic {
         cal = new MyCalculation();
         ((MyCalculation) cal).multiplication(1,3);
 
+        Vehicle v = new Vehicle();
+        Car c = new Car();
+        Van van = new Van();
+        Toyota to = new Toyota();
+
+        System.out.println(c instanceof Vehicle);
+        System.out.println(van instanceof Vehicle);
+        System.out.println(to instanceof Vehicle);
+        System.out.println(c instanceof Toyota);
     }
 }
