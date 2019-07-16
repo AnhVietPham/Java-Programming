@@ -1,5 +1,8 @@
 package com.avp.basic.datastructure_algorithms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DoublyLinkedList<E> {
     private static class Node<E> {
         private E element;
@@ -39,25 +42,69 @@ public class DoublyLinkedList<E> {
 
     private Node<E> head;
     private Node<E> tail;
+    private int size = 0;
 
     DoublyLinkedList(E e) {
         head = new Node<>(e, null, null);
         this.tail = this.head;
     }
 
-    void printDoublyLinkedList(){
+    void printDoublyLinkedList() {
+        List<E> arrayValue = new ArrayList<>();
+        Node<E> currentNode = this.head;
+        while (currentNode != null) {
+            arrayValue.add(currentNode.getElement());
+            currentNode = currentNode.getNext();
+        }
 
+        for (E e : arrayValue) {
+            System.out.print(e + ", ");
+        }
     }
 
-    void preAppend(E e){}
+    void preAppend(E e) {
+        Node<E> newNode = new Node<>(e, null, null);
+        this.head.setPrev(newNode);
+        newNode.setNext(this.head);
+        this.head = newNode;
+        size++;
+    }
 
-    void append(E e){}
+    void append(E e) {
+        Node<E> newNode = new Node<>(e, null, null);
+        this.tail.setNext(newNode);
+        newNode.setPrev(this.tail);
+        this.tail = newNode;
+        size++;
+    }
 
-    void remove(int index){}
+    void remove(int index) {
+        Node<E> nodeAtIndex = traversalToIndex(index);
+        Node<E> holdingPrePointer = nodeAtIndex.getPrev();
+        Node<E> holdingAfterPointer = nodeAtIndex.getNext();
+        holdingPrePointer.setNext(holdingAfterPointer);
+        holdingAfterPointer.setPrev(holdingPrePointer);
+        size--;
+    }
 
-    void insert(int index, E e){}
+    void insert(int index, E e) {
+        Node<E> newNode = new Node<>(e, null, null);
+        Node<E> nodeAtPreIndex = traversalToIndex(index - 1);
+        Node<E> holdingPointer = nodeAtPreIndex.getNext();
+        nodeAtPreIndex.setNext(newNode);
+        newNode.setPrev(nodeAtPreIndex);
+        newNode.setNext(holdingPointer);
+        holdingPointer.setPrev(newNode);
+        size++;
+    }
 
-    void addFirst(E e){}
-
-    void addLast(E e){}
+    Node<E> traversalToIndex(int index) {
+        int count = 0;
+        Node<E> currentNode = this.head;
+        while (count != index) {
+            currentNode = currentNode.getNext();
+            count++;
+        }
+        return currentNode;
+    }
 }
