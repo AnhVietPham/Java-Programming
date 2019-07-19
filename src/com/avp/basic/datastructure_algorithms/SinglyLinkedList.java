@@ -85,6 +85,19 @@ public class SinglyLinkedList<E> {
         size--;
     }
 
+    void reverse() {
+        Node<E> next = null;
+        Node<E> currentNode = this.head;
+        Node<E> prev = null;
+        while (currentNode != null) {
+            next = currentNode.getNext();
+            currentNode.setNext(prev);
+            prev = currentNode;
+            currentNode = next;
+        }
+        this.head = prev;
+    }
+
     private Node<E> traversalNode(int index) {
         int count = 0;
         Node<E> currentNode = this.head;
