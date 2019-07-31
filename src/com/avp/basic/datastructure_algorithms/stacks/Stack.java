@@ -21,13 +21,13 @@ public interface Stack<E> {
     boolean isEmpty();
 
     /**
-     * Insert a element at the top of the Stack
+     * Insert an element at the top of the Stack
      * @param e element to be inserted
      */
     void push(E e);
 
     /**
-     * Return element at the top of the Stack
+     * Return an element at the top of the Stack
      * @return top element in the Stack (or null if empty)
      */
     E top();
