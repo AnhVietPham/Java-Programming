@@ -1,5 +1,8 @@
 package com.avp.basic.datastructure_algorithms.queue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QueueSinglyLinkedList implements Queue<Integer> {
     private static class Node<E> {
         private Node<E> next;
@@ -42,17 +45,40 @@ public class QueueSinglyLinkedList implements Queue<Integer> {
     }
 
     @Override
-    public void enqueue(Integer integer) {
-
+    public void enqueue(Integer value) {
+        Node<Integer> newNode = new Node<>(value, null);
+        if (size == 0) {
+            this.first = newNode;
+            this.last = this.first;
+        } else {
+            this.last.setNext(newNode);
+            this.last = newNode;
+        }
+        size++;
     }
 
     @Override
     public Integer first() {
-        return null;
+        return this.first.getElement();
     }
 
     @Override
     public Integer dequeue() {
-        return null;
+        int elementNodeRemoved = this.first.getElement();
+        this.first = this.first.getNext();
+        size--;
+        return elementNodeRemoved;
+    }
+
+    void printValueQueue() {
+        List<Integer> arrayValue = new ArrayList<>();
+        while (this.first != null) {
+            arrayValue.add(this.first());
+            this.dequeue();
+        }
+
+        for (int e : arrayValue) {
+            System.out.print(e + " ");
+        }
     }
 }
