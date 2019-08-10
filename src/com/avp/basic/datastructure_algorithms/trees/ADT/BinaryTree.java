@@ -1,4 +1,4 @@
-package com.avp.basic.datastructure_algorithms.trees;
+package com.avp.basic.datastructure_algorithms.trees.ADT;
 
 
 public interface BinaryTree<E> extends Tree<E> {
